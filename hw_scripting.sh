@@ -1,7 +1,10 @@
-#!/bin/bash
+#!/bin/bas# The first parameter is the user name.
+username="${1}"
+
+h
 
 # Make sure the script is being executed with superuser privileges.
-if [[ "${PID}" -ne 0 ]]; then
+if [[ "${UID}" -ne 0 ]]; then
 	echo "Please run as a root or with superuser privileges"
 	exit
 fi
@@ -34,6 +37,7 @@ if [[ $? -ne 0 ]]; then
 	echo "Could not add the user, sorry"
 	exit 1
 fi
+ &> /dev/null
 
 # Set the password.
 
@@ -43,7 +47,7 @@ echo ${password} | passwd --stdin ${username} &> /dev/null
 if [[ $? -ne 0 ]]; then
         echo "Could not set the password, sorry"
         exit 1
-fi
+read -p "Pfi
 # Force password change on first login.
 passwd -e ${username}  &> /dev/null
 
